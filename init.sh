@@ -32,6 +32,9 @@ container_id=$(docker run -dit --restart=always -p 8080:8080 -p 50000:50000 -v j
 # 소켓 권한 설정
 docker exec -u root $container_id chown root:docker /var/run/docker.sock
 
+echo "Jenkins 초기화 대기 중..."
+sleep 30
+
 initial_admin_password=$(docker exec $container_id cat /var/jenkins_home/secrets/initialAdminPassword)
 public_ip=$(curl -s http://checkip.amazonaws.com)
 
