@@ -16,3 +16,9 @@ chmod +x init.sh
 ```
 
 패스워드와 입력과 계정 생성하면 젠킨스 서버 완료
+
+### docker.sock의 권한 문제 발생 시
+
+```
+docker exec -u root $container_id chown root:docker /var/run/docker.sock
+```
