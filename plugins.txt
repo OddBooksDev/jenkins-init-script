@@ -3,3 +3,6 @@ amazon-ecr:latest
 docker-workflow:latest
 publish-over-ssh:latest
 pipeline-aws:latest
+slack:latest
+generic-webhook-trigger:latest
+github-pullrequest:latest
