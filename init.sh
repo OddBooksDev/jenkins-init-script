@@ -27,7 +27,7 @@ echo "========================"
 docker build -t jenkins .
 
 # Jenkins 컨테이너 실행
-container_id=$(docker run -dit --restart=always -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins)
+container_id=$(docker run -dit --network uponati-network --name jenkins --restart=always -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins)
 
 # 소켓 권한 설정
 docker exec -u root $container_id chown root:docker /var/run/docker.sock
