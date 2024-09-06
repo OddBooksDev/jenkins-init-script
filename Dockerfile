@@ -14,6 +14,11 @@ RUN usermod -aG docker jenkins
 RUN mkdir -p /usr/share/jenkins/ref/plugins && chown -R jenkins:jenkins /usr/share/jenkins/ref/plugins
 RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins/plugins.txt --verbose
 
+# if you run docke in macos, use [--platform linux/amd64]
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install
+
 USER jenkins
 
 RUN chown -R jenkins:jenkins /var/jenkins_home
