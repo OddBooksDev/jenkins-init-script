@@ -21,5 +21,6 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 
 USER jenkins
 
+RUN mkdir -p /var/thinbackups
 RUN chown -R jenkins:jenkins /var/jenkins_home
-
+RUN chown -R jenkins:jenkins /var/thinbackups

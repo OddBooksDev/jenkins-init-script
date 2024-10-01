@@ -23,11 +23,28 @@ echo
 echo "========================"
 
 
+NETWORK_NAME="uponati-network"
+CURRENT_DIR=$(pwd)
+
+# Docker 네트워크가 존재하는지 확인하고, 없으면 생성
+if ! docker network ls | grep -q "${NETWORK_NAME}"; then
+  echo "Docker 네트워크 '${NETWORK_NAME}'가 존재하지 않습니다. 새 네트워크를 생성합니다."
+  docker network create ${NETWORK_NAME}
+else
+  echo "Docker 네트워크 '${NETWORK_NAME}'가 이미 존재합니다."
+fi
+
+mkdir -p $CURRENT_DIR/thinbackups
+mkdir -p $CURRENT_DIR/jenkins_home
+
 # Docker build
 docker build -t jenkins .
 
 # Jenkins 컨테이너 실행
-container_id=$(docker run -dit --network uponati-network --name jenkins --restart=always -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins)
+container_id=$(docker run -dit --network uponati-network --name jenkins --restart=always -p 8080:8080 -p 50000:50000 \
+-v $CURRENT_DIR/thinbackups:/var/thinbackups \
+-v $CURRENT_DIR/jenkins_home:/var/jenkins_home \
+-v /var/run/docker.sock:/var/run/docker.sock jenkins)
 
 # 소켓 권한 설정
 docker exec -u root $container_id chown root:docker /var/run/docker.sock
