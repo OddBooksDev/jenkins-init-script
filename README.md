@@ -22,3 +22,5 @@ chmod +x init.sh
 ```
 docker exec -u root $container_id chown root:docker /var/run/docker.sock
 ```
+
+-
