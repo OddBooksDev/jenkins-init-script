@@ -37,6 +37,10 @@ fi
 mkdir -p $CURRENT_DIR/thinbackups
 mkdir -p $CURRENT_DIR/jenkins_home
 
+# 권한 설정(Jenkins Coantiner에서 jenkins user는 pid 1000, gid 1000으로 사용함)
+sudo chown -R 1000:1000 $CURRENT_DIR/jenkins_home
+sudo chown -R 1000:1000 $CURRENT_DIR/thinbackups
+
 # Docker build
 docker build -t jenkins .
 
