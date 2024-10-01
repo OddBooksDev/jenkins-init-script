@@ -7,5 +7,5 @@ slack:latest
 generic-webhook-trigger:latest
 github-pullrequest:latest
 pipeline-stage-view:latest
-thinbackups:latest
+thinBackup:latest
 jobConfigHistory:latest
