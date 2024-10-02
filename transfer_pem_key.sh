@@ -45,6 +45,7 @@ fi
 # 첫 번째 인자로 SSH 설정 이름 확인
 if [ -z "$1" ]; then
     # 인자가 제공되지 않은 경우 사용자 입력 받기
+    cat ~/.ssh/config
     echo -e "${GREEN}Enter the SSH configuration name (from .ssh/config) for the PEM key transfer: ${NC}"
     read ssh_config_name
 else
