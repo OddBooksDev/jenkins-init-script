@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # 색상 코드 정의
 GREEN='\033[0;32m'
@@ -61,6 +62,6 @@ read destination_path
 
 # rsync를 사용한 PEM 키 전송
 echo "Transferring the PEM key..."
-rsync -avz -e $pem_key_path ${ssh_config_name}:${destination_path}
+rsync -avz $pem_key_path ${ssh_config_name}:${destination_path}
 
 echo "PEM key has been transferred."

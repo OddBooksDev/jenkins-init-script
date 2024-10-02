@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # 색상 코드 정의
 GREEN='\033[0;32m'
