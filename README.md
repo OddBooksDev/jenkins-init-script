@@ -24,3 +24,7 @@ docker exec -u root $container_id chown root:docker /var/run/docker.sock
 ```
 
 -
+
+# 스크립트
+
+스크립트는 전부 젠킨스 도커에 대한 데이터를 옮기기 위한 스크립트임
