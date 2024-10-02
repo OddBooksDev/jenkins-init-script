@@ -36,10 +36,12 @@ fi
 
 mkdir -p $CURRENT_DIR/thinbackups
 mkdir -p $CURRENT_DIR/jenkins_home
+mkdir -p $CURRENT_DIR/.jenkins_ssh
 
 # 권한 설정(Jenkins Coantiner에서 jenkins user는 pid 1000, gid 1000으로 사용함)
 sudo chown -R 1000:1000 $CURRENT_DIR/jenkins_home
 sudo chown -R 1000:1000 $CURRENT_DIR/thinbackups
+sudo chown -R 1000:1000 $CURRENT_DIR/.jenkins_ssh
 
 # Docker build
 docker build -t jenkins .
@@ -48,6 +50,7 @@ docker build -t jenkins .
 container_id=$(docker run -dit --network uponati-network --name jenkins --restart=always -p 8080:8080 -p 50000:50000 \
 -v $CURRENT_DIR/thinbackups:/var/thinbackups \
 -v $CURRENT_DIR/jenkins_home:/var/jenkins_home \
+-v $CURRENT_DIR/.jenkins_ssh:/var/jenkins_home/.ssh \
 -v /var/run/docker.sock:/var/run/docker.sock jenkins)
 
 # 소켓 권한 설정
