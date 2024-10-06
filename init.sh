@@ -54,7 +54,8 @@ container_id=$(docker run -dit --network uponati-network --name jenkins --restar
 -v /var/run/docker.sock:/var/run/docker.sock jenkins)
 
 # 소켓 권한 설정
-docker exec -u root $container_id chown root:docker /var/run/docker.sock
+sudo docker exec -u root $container_id chown root:docker /var/run/docker.sock
+sudo docker exec -u root $container_id chmod 660 /var/run/docker.sock
 
 echo "Jenkins 초기화 대기 중..."
 sleep 30

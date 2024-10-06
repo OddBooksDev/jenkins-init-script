@@ -28,3 +28,7 @@ docker exec -u root $container_id chown root:docker /var/run/docker.sock
 # 스크립트
 
 스크립트는 전부 젠킨스 도커에 대한 데이터를 옮기기 위한 스크립트임
+
+## 백업 작업 시 처리해야할 사항
+
+1. credential에 등록된 정보를 전부 갱신해줘야함(암호화 키 부분에서 일치하지않는거같음)
