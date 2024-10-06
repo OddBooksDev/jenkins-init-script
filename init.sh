@@ -51,11 +51,11 @@ container_id=$(docker run -dit --network uponati-network --name jenkins --restar
 -v $CURRENT_DIR/thinbackups:/var/thinbackups \
 -v $CURRENT_DIR/jenkins_home:/var/jenkins_home \
 -v $CURRENT_DIR/.jenkins_ssh:/var/jenkins_home/.ssh \
+--group-add=$(getent group docker | cut -d: -f3) \
 -v /var/run/docker.sock:/var/run/docker.sock jenkins)
 
 # 소켓 권한 설정
 sudo docker exec -u root $container_id chown root:docker /var/run/docker.sock
-sudo docker exec -u root $container_id chmod 660 /var/run/docker.sock
 
 echo "Jenkins 초기화 대기 중..."
 sleep 30
