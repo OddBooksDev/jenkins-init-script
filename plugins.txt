@@ -9,3 +9,4 @@ github-pullrequest:latest
 pipeline-stage-view:latest
 thinBackup:latest
 jobConfigHistory:latest
+build-user-vars-plugin:latest
